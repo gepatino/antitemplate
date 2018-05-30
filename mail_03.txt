@@ -1,0 +1,712 @@
+Delivered-To: gepatino@gmail.com
+Received: by 2002:ac0:a4e9:0:0:0:0:0 with SMTP id 96-v6csp7255433imx;
+        Wed, 16 May 2018 10:04:58 -0700 (PDT)
+X-Google-Smtp-Source: AB8JxZpl4j+bjINDQHKzx5VZVQmESp1x7I6jjFk2c1pAxnZuY9BCHNghkcJXFekmNVlFII0uh/N8
+X-Received: by 2002:ac8:459d:: with SMTP id l29-v6mr1801379qtn.365.1526490298887;
+        Wed, 16 May 2018 10:04:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1526490298; cv=none;
+        d=google.com; s=arc-20160816;
+        b=eF8GoIwBLhimku+TerDGouxfEcAP20zbvI1I6YDlJuV10zacl0hqsifBFNAKMfM/Dl
+         M68PGoTQWZj9RQh8TqrIZR9XXS+Zr7RPfWlO2WGyJF1xEyOQxfysl6V2h2TWqSUOIX5e
+         WGRnXXk7h51AILYc/TMAbCV/W1H2i4iVpBE34MP7bdc1R+R+bbIxoIV82pNvG3waGXQY
+         gZKz/z+WCTWmv6sfhERw3tBqDnjdlcYvioIoC4fl85Y0a91H3KA0wyY4vVar0ixfAKbe
+         A6Bt8AFGsBZn4Whb0zf3fpeemo8e5kK8kR/rXEm+lKUa85Naon9pf7h7b8YbC38onwXy
+         dHzw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:message-id:to:from:date:dkim-signature
+         :domainkey-signature:arc-authentication-results;
+        bh=+6BxHuoB7y+1nM7IHm/tSGreQkb+eblq+9hOhLUu1zU=;
+        b=0olJ8PvkYPuKfTQ2Iv+6kp9Id1DXBd0Q2MFEu6VBa0xDgAQWXJ2SR2UZ2gbx5Ws831
+         z4+ABDC7Wn0uEngnDnQpfsHOAj4MFZegGfwmC4p4ayq1vDfXJFlvVhrTxFkOryH+OR/B
+         K5OKeGMW2j392Nv58RZdIvBmvrwIFgzNompal3HCt35zIL/CQZ1ayxRdoGr3eorjxdi5
+         7GAKfQ8uAGNA9qmuMnA0gZm7LseO0KTcP4fjPuSfzpURGOUdA15r0MYAJVrIAr+7jPbd
+         znVaewhcsMVfuIQOrHrxKibj0dfeipNX443/AF2VRTQhj4ZbtmsmoBDl4B51dWRl1Pol
+         JP9Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@mercadolibre.com header.s=iron05 header.b=Ll35/Fwu;
+       spf=pass (google.com: domain of no-responder@mercadolibre.com designates 216.33.196.167 as permitted sender) smtp.mailfrom=no-responder@mercadolibre.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mercadolibre.com
+Return-Path: <no-responder@mercadolibre.com>
+Received: from dc4-iron05-d.mercadolibre.com (dc4-iron05-d.mercadolibre.com. [216.33.196.167])
+        by mx.google.com with ESMTPS id t4-v6si1379778qkf.194.2018.05.16.10.04.58
+        for <gepatino@gmail.com>
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Wed, 16 May 2018 10:04:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of no-responder@mercadolibre.com designates 216.33.196.167 as permitted sender) client-ip=216.33.196.167;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@mercadolibre.com header.s=iron05 header.b=Ll35/Fwu;
+       spf=pass (google.com: domain of no-responder@mercadolibre.com designates 216.33.196.167 as permitted sender) smtp.mailfrom=no-responder@mercadolibre.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=mercadolibre.com
+DomainKey-Signature: s=iron05; d=mercadolibre.com; c=nofws; q=dns;
+  h=Received:Date:From:To:Message-ID:Subject:MIME-Version:
+   Content-Type;
+  b=P3NDTB1x5MsN5KJBrjRgBX5x1C1Mh20013LlSgVUXDNOkK6pawCAzdWR
+   vFKaf+xaWas6qZ+2aSxO/rhc7XjPidYYTl+zhZq2g/Bh5lbzyxgbTUo7x
+   hEIVqBZV7PuExNXOWW04diM6lj+UC6fY1ftG9wkBtxiLp0Cka4PhAHy7i
+   8=;
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=mercadolibre.com; i=@mercadolibre.com; q=dns/txt;
+  s=iron05; t=1526490298; x=1558026298;
+  h=from:to:message-id:subject:mime-version:date;
+  bh=HZekQ+ldzBPlyv4CPRHt7cIQFTYA4Hu8qUHmpMXFonY=;
+  b=Ll35/FwuDpTup1mgV359DpQxmOT0KpAUtBe/lwqI0FCeUJvt7fLrgYEX
+   9PXlO+Bd68AeV/UDApA5XZ+HzTHWwYDuXN40lAsFTM49GGFa0HuGtqmsf
+   bsUkJo518pxqmnI/3iJFEG5o06ifBBT+FeLnsvFn8IP7w7JlmwvZBW6Cu
+   Y=;
+Received: from unknown (HELO e-0000af7c) ([10.34.34.107])
+  by dc4-iron05-d.mercadolibre.com with ESMTP; 16 May 2018 13:04:57 -0400
+Date: 16 May 2018 13:04:57 -0400
+From: Mercado Libre <no-responder@mercadolibre.com>
+To: gepatino@gmail.com
+Message-ID: <2096381556.30153660.1526490297221.JavaMail.oraweb@e-0000af7c>
+Subject: =?ISO-8859-1?Q?=09=09=09Detalle_de_compra_de_Hacha_Le=F1a_Cabo_Fib?=
+ =?ISO-8859-1?Q?ra_Con_Goma_Acero_Carbono_Truper=09__________?=
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_30153656_644771717.1526490297214"
+
+------=_Part_30153656_644771717.1526490297214
+Content-Type: multipart/related; 
+	boundary="----=_Part_30153657_475764857.1526490297214"
+
+------=_Part_30153657_475764857.1526490297214
+Content-Type: text/html;charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+ <html xmlns=3D"http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0, minimum-scale=3D1.0, maximum-scale=3D1.0">
+    <meta name=3D"format-detection" content=3D"telephone=3Dno">
+=09<meta charset=3D"utf-8"/>
+    <style type=3D"text/css">
+    table, tr, td, span, a {
+        -webkit-text-size-adjust:none;
+    }
+
+    @media only screen and (max-width: 599px) {
+
+        table[class=3D"slogan-app"] {
+            text-align: center;
+            width: 100%;
+        }
+
+        td[class=3D"logo-left"] {
+            width: 50%;
+            text-align: right;
+        }
+
+        td[class=3D"logo-right"] {
+            width: 50%;
+            text-align: left;
+        }
+
+        td[class=3D"spacer"]{
+            display: none;
+        }
+
+    }
+
+    @media only screen and (max-width: 710px) {
+        .primary-action {
+            font-size: 17px!important;
+            display: inline-block;
+        }
+
+        .secondary-action {
+            display: inline-block;
+            text-align: center;
+        }
+
+    }
+
+    @media only screen and (max-width: 528px) {
+        .primary-action {
+            float: none!important;
+        }
+
+    }
+
+    @media only screen and (max-width: 460px) {
+        div.primary-action {
+            margin-right: 0!important;
+        }
+    }
+
+    @media only screen and (max-width: 260px) {
+        .iv_btn {
+            font-size: 16px!important;
+        }
+    }
+
+   =20
+    </style>
+</head>
+<body style=3D"padding:0; max-width: 700px; margin: 0 auto;">
+=09<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+=09=09<tr>
+=09=09=09<td class=3D"logo" align=3D"left" style=3D"padding:10px 0 15px 0">
+=09=09=09=09<img alt=3D"MercadoLibre" border=3D"0" title=3D"MercadoLibre" w=
+idth=3D"132" height=3D"33" src=3D"http://static.mlstatic.com/org-img/emails=
+/logos/logo-mercadolibre-new.gif"/>
+=09=09=09</td>
+=09=09</tr>
+=09=09<tr>=09
+=09=09=09<td width=3D"100%" style=3D"border-top:solid 1px #E8E8E8;display:b=
+lock"></td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td height=3D"25" style=3D"font-size:1px">&nbsp;</td>
+=09=09</tr>
+=09</table>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr>
+=09=09<td  width=3D"40">
+=09=09=09<img alt=3D"Congrats" width=3D"32" height=3D"32" src=3D"http://sta=
+tic.mlstatic.com/org-img/emails/icons/ico_ok2.gif"/>
+=09=09</td>
+=09=09<td style=3D"font-family:Arial; font-size:20px; color:#468847; font-w=
+eight:normal;">
+=09=09=09
+=09=09=09=09=A1Gracias por tu compra!
+=09=09=09
+=09=09</td>
+=09</tr>
+</table>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr><td height=3D"10" style=3D"font-size:1px">&nbsp;</td></tr>
+</table>
+
+   =20
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+=09<tr>
+=09=09<td>
+=09=09=09<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=
+=3D"0">
+=09=09=09=09<tr valign=3D"top">
+=09=09=09=09=09<td style=3D"width:90px">
+=09=09=09=09=09=09<span style=3D"border:1px solid #cccccc;display:block;">
+=09=09=09=09=09=09=09<a href=3D"https://myaccount.mercadolibre.com.ar/purch=
+ases/vop?orderId=3D1711319912"><img src=3D"https://mla-s2-p.mlstatic.com/85=
+7370-MLA25635346234_052017-I.jpg" style=3D"display:block;" width=3D"90" hei=
+ght=3D"90"></a>
+=09=09=09=09=09=09</span>=09
+=09=09=09=09=09</td>
+=09=09=09=09=09<td>=09
+=09=09=09=09=09=09<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+=09=09=09=09=09=09   <tr>
+=09=09=09=09=09   =09=09=09<td style=3D"font-family:Arial; font-size:14px; =
+color:#666666;padding:0 20px 6px 15px;line-height:1.4;">Hacha Le&ntilde;a C=
+abo Fibra Con Goma Acero Carbono Truper</td>
+=09=09=09=09=09   =09=09</tr>
+=09=09=09=09=09=09    <tr>
+=09=09=09=09=09=09    =09<td style=3D"font-family:Arial; font-size:12px; co=
+lor:#999999;padding:0 20px 6px 15px">
+=09=09=09=09=09=09=09=09=09
+=09=09=09=09=09=09=09=09=09Cantidad: 1=20
+=09=09=09=09=09=09=09=09</td>
+=09=09=09=09=09=09    </tr>
+=09=09=09=09=09=09    <tr>
+=09=09=09=09=09=09    =09<td style=3D"font-family:Arial; font-size:16px; co=
+lor:#B22C00;padding:0 20px 0 15px">$ 1.230,00
+=09=09=09=09=09=09=09=09=09<span style=3D"font-family:Arial; font-size:14px=
+; color:#666666;">
+=09=09=09=09=09=09=09    =09=09
+=09=09=09=09=09=09    =09=09=09=09=09c/u
+=09=09=09=09    =09=09=09=09=09
+=09=09=09    =09=09=09=09=09</span>
+=09=09=09=09    =09=09=09</td>
+=09=09=09=09=09=09    </tr>
+=09=09=09=09=09=09</table>
+=09=09=09=09=09</td>
+=09=09=09=09</tr>
+=09=09=09</table>
+=09=09</td>
+=09</tr>
+=09<tr><td height=3D"25" style=3D"font-size:1px">&nbsp;</td></tr>
+</table>
+
+
+
+
+
+=09<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" s=
+tyle=3D"padding:0 20px 0 0">
+=09=09
+
+
+
+=09<tr>
+=09=09<td style=3D"font-family:Arial; font-size:18px; color:#333333;padding=
+-bottom: 3px;">
+=09=09=09Env=EDo
+=09=09</td>
+=09</tr>
+
+
+
+=09=09
+
+
+=09
+
+=09=09
+
+
+
+
+
+=09=09
+
+
+
+=09
+    =09<tr>
+    =09=09<td style=3D"font-family:Arial; font-size:14px; color:#666666;pad=
+ding-bottom:10px; line-height:1.4;">
+    =09=09   =20
+                    <strong style=3D"color:#468847;">Normal a domicilio gra=
+tis</strong>
+               =20
+=09=09=09=09<br/>
+               =20
+
+
+
+   =20
+
+
+
+<span> Llega entre el 24 y 29 de mayo.
+
+ </span>
+
+
+
+
+               =20
+            </td>
+    =09</tr>
+    =09 <tr>
+=09<td style=3D"font-family:Arial; font-size:14px; color:#666666;line-heigh=
+t:1.4;">
+=09=09Los Tordos 438 Barrio San Fernando<br>8370, San Mart=EDn De Los Andes=
+, Neuqu=E9n<br>Gabriel Pati=F1o<br>02972 414711
+=09</td>
+</tr>
+=09
+
+=09=09
+
+
+
+=09=09
+
+
+
+=09
+
+=09</table>
+
+
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr><td height=3D"25" style=3D"font-size:1px">&nbsp;</td></tr>
+</table>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr>
+=09=09<td style=3D"font-family:Arial; font-size:18px; color:#333333;">
+=09=09=09
+=09=09=09=09Pago
+=09=09=09
+=09=09</td>
+=09</tr>
+=09<tr><td height=3D"3" style=3D"font-size:1px">&nbsp;</td></tr>
+</table>
+
+
+
+
+
+
+
+    <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" =
+style=3D"padding:0 20px 5px 0">
+        <tr>
+           =20
+                <td width=3D"120" style=3D"font-family:Arial; font-size:14p=
+x; color:#666666;">
+                   =20
+   =20
+        <img alt=3D"master" border=3D"0" title=3D"master" width=3D"auto" he=
+ight=3D"auto" style=3D"display: inline; vertical-align: middle" src=3D"http=
+://img.mlstatic.com/org-img/MP3/API/logos/master.gif">
+   =20
+                    Mastercard terminada en 7372
+                   =20
+                </td>
+           =20
+        </tr>
+    </table>
+
+
+
+
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr style=3D"display:block; padding:5px 0">
+=09=09<td width=3D"120" style=3D"font-family:Arial; font-size:14px; color:#=
+666666">
+=09=09=09
+=09=09=09=09
+=09=09=09=09=09Producto
+=09=09=09=09
+=09=09=09
+=09=09</td>
+=09=09<td style=3D"font-family:Arial; font-size:14px; color:#666666">
+=09=09=09&nbsp;&nbsp;$ 1.230,00
+=09=09</td>
+=09</tr>
+=09
+
+=09
+=09
+=09=09
+
+
+
+
+
+    <tr style=3D"display:block; padding:5px 0">
+        <td width=3D"120" style=3D"font-family:Arial; font-size:14px; color=
+:#666666">
+            Env=EDo:
+        </td>
+        <td style=3D"font-family:Arial; font-size:14px; color:#666666">
+            &nbsp;&nbsp;$ 0,00
+        </td>
+    </tr>
+
+
+=09
+
+=09<tr style=3D"display:block; padding:5px 0">
+    <td valign=3D"top" width=3D"120" style=3D"font-family:Arial; font-size:=
+14px; color:#666666; border-top: solid 1px #DDDDDD; padding:5px 0">
+
+        Total:
+    </td>
+    <td valign=3D"top" style=3D"font-family:Arial; font-size:14px; color:#B=
+22C00; border-top: solid 1px #DDDDDD; padding:5px 0">
+       =20
+            <span style=3D"font-weight: bold; color: #B22C00;">
+                &nbsp;&nbsp;12 cuotas de $ 145,66
+            </span>
+            <br>
+            <span style=3D"font-family:Arial; font-size:13px; color:#999999=
+; padding-bottom:5px;line-height:1.4;">
+                &nbsp;&nbsp;( $ 1.747,95 )
+            </span>
+           =20
+           =20
+       =20
+       =20
+       =20
+    </td>
+</tr>
+
+   =20
+
+
+=09
+=09=09
+
+
+    <tr>
+        <td colspan=3D"2" width=3D"145" style=3D"font-family:Arial; font-si=
+ze:13px; color:#999999; padding-bottom:5px;line-height:1.4;">
+           =20
+               =20
+                   =20
+                        Tu pago aparecer=E1 como MercadoPago en el resumen =
+de la tarjeta.
+                   =20
+               =20
+           =20
+        </td>
+    </tr>
+
+=09
+
+
+=09
+=09=09
+
+=09
+
+</table>
+
+
+
+
+
+=09
+
+
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr><td height=3D"25" style=3D"font-size:1px">&nbsp;</td></tr>
+</table>
+
+
+
+
+
+=09
+=09=09<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0=
+" style=3D"padding:0 20px 0 0">
+=09=09=09<tr>
+=09=09=09=09<td style=3D"font-family:Arial; font-size:18px; color:#333333; =
+padding-bottom:3px;">
+=09=09=09=09=09Vendedor
+=09=09=09=09</td>
+=09=09=09</tr>
+=09=09</table>
+=09
+
+
+
+
+
+
+
+=09
+=09=09<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0=
+" style=3D"padding:0 20px 0 0">
+=09=09<tr>
+=09=09=09<td style=3D"font-family:Arial; font-size:14px; color:#666666;padd=
+ing-bottom:5px;">
+=09=09=09=09 TBX HERRAMIENTAS S.R.L.
+=09=09=09</td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td style=3D"font-family:Arial; font-size:14px; color:#666666;padd=
+ing-bottom:5px;">
+=09=09=09=09
+=09=09=09=09=09<a href=3Dhttps://myaccount.mercadolibre.com.ar/messaging/or=
+ders/1711319912 style=3D"font-size:14px"> Enviar mensaje</a>
+=09=09=09=09
+=09=09=09</td>
+=09=09</tr>
+=09=09<tr>
+=09=09=09<td style=3D"font-family:Arial; font-size:14px; color:#666666;padd=
+ing-bottom:5px;">
+=09=09=09=09
+=09=09=09=09<a style=3D"font-size:14px; color:#0637b3; text-decoration:none=
+" href=3D"tel:+ 1560952050"> 1560952050</a>
+=09=09=09</td>
+=09=09</tr>
+=09=09
+=09=09</table>
+=09=09
+=09
+
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr><td height=3D"25" style=3D"font-size:1px">
+=09=09<hr style=3D"border-top: dotted 1px #ccc;border-bottom: none;">
+=09</td></tr>
+</table>
+
+
+
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0;">
+=09<tr>
+    <td style=3D"font-family:Arial; font-size:18px; color:#333333; font-wei=
+ght:normal;padding-bottom:3px;line-height:1.4;">
+        =BFY ahora qu=E9 tengo que hacer?
+    </td>
+</tr>
+=09
+=09=09=20
+=09=09=09<tr>
+    <td style=3D"font-family:Arial; font-size:14px; color:#666666; padding-=
+bottom:25px;line-height:1.4;">
+        Solo tienes que esperar a que llegue el producto. Cuando est=E9 en =
+camino, te enviaremos un e-mail para que puedas hacer el seguimiento.
+    </td>
+</tr>
+
+=09=09
+=09
+</table>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr><td height=3D"25" style=3D"font-size:1px">&nbsp;</td></tr>
+</table>
+
+
+
+   =20
+        <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D=
+"0" style=3D"padding:0 20px 0 0">
+=09<tr><td height=3D"25" style=3D"font-size:1px">
+=09=09<hr style=3D"border-top: dotted 1px #ccc;border-bottom: none;">
+=09</td></tr>
+</table>
+        <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D=
+"0" style=3D"padding:0 20px 0 0">
+            <tr>
+                <td style=3D"
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 16px;
+                    color: #333;
+                    padding-bottom: 6px;
+                    line-height: 1.2;
+                    letter-spacing: 0.1px;
+                    padding-top: 10px;">
+                    Mercado Puntos
+                </td>
+            </tr>
+            <tr>
+                <td style=3D"
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    color: #666;
+                    padding-bottom: 6px;
+                    line-height: 1.3;
+                    letter-spacing: 0.1px;">
+                   =20
+                        =A1Qu=E9 bien! <strong>Sumaste 102 puntos</strong> =
+por esta compra.
+                   =20
+                </td>
+            </tr>
+       =20
+            <tr>
+                <td style=3D"
+                    font-family: Arial, Helvetica, sans-serif;
+                    font-size: 14px;
+                    color: #0d31b8;
+                    padding-bottom: 16px;
+                    line-height: 1.3;
+                    letter-spacing: 0.1px;">
+                    <a href=3D"https://www.mercadolibre.com.ar/mercadopunto=
+s"> Ver mi nivel y pr=F3ximos desaf=EDos</a>
+                </td>
+            </tr>
+       =20
+        </table>
+        <table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D=
+"0" style=3D"padding:0 20px 0 0">
+=09<tr><td height=3D"25" style=3D"font-size:1px">
+=09=09<hr style=3D"border-top: dotted 1px #ccc;border-bottom: none;">
+=09</td></tr>
+</table>
+   =20
+
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0">
+=09<tr>
+=09=09<td style=3D"font-family:Arial; font-size:14px; color:#666666">
+=09=09=09=A1Que lo disfrutes!
+=09=09</td>
+=09</tr>
+=09<tr>
+=09=09<td style=3D"font-family:Arial; font-size:14px; color:#666666">
+=09=09=09El equipo de Mercado Libre
+=09=09</td>
+=09</tr>
+=09<tr><td height=3D"25" style=3D"font-size:1px">&nbsp;</td></tr>
+</table>
+=09<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" s=
+tyle=3D"padding:0 20px 0 0">
+=09=09<tr>
+=09=09=09<td style=3D"padding-top:10px;border-top: solid 1px #E8E8E8;">
+=09=09=09=09<span style=3D"font-family:Arial; font-size:12px; color:#999999=
+">
+=09=09=09=09=09No respondas este e-mail.
+=09=09=09=09=09<a href=3D"http://www.mercadolibre.com.ar/ayuda_home" style=
+=3D"font-family:Arial; font-size:12px; color:#0637B3; text-decoration:none"=
+>Ayuda</a>.
+=09=09=09=09</span>
+=09=09=09</td>
+=09=09</tr>
+=09=09<tr><td height=3D"15" style=3D"font-size:1px">&nbsp;</td></tr>
+=09</table>
+=09
+=09
+<img width=3D"1" height=3D"1" border=3D"0" style=3D"mso-hide: all !importan=
+t; display:none !important; visibility:hidden !important; opacity:0 !import=
+ant;" src=3D"https://www.mercadolibre.com.ar/gz/emails/pixel?email_id=3D138=
+39800472&email_template=3DCHO_PAGO_ENVIO&user_id=3D104810&email_address=3Dg=
+epatino@gmail.com&site_id=3DMLA&sent_date=3D2018-05-16T13:04:57.209-04:00&v=
+=3D2&business=3Dmercadolibre&hash=3Dc8c79c4304ce6acf46a8894ba0a4c9c28e9fb88=
+b"></body>
+</html>
+<table width=3D"100%" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" styl=
+e=3D"padding:0 20px 0 0;">
+    <tr>
+        <td>
+            <!-- Banner PUSH APP -->
+            <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=
+=3D"float:left; height:45px;" class=3D"slogan-app">
+                <tr>
+                    <td style=3D"font-family:Arial, San Serif; color:#99999=
+9;">
+                        =A1Compra y vende desde tu celular!
+                       =20
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0" style=
+=3D"float: right;">
+                <tr>
+                    <td width=3D"5">&nbsp;</td>
+                    <td class=3D"logo-left">
+                        <a href=3D"http://itunes.apple.com/app/mercadolibre=
+/id463624852">
+                       =20
+                           =20
+                                <img src=3D"http://static.mlstatic.com/org-=
+img/emails/appStore-2x_es_c.png" border=3D"0" width=3D"138" height=3D"43" t=
+itle=3D"Descargar aplicaci=F3n para IOS" alt=3D"Descargar aplicaci=F3n para=
+ IOS">
+                           =20
+                       =20
+                        </a>
+                    </td>
+                    <td width=3D"5">&nbsp;</td>
+                    <td class=3D"logo-right">
+
+                       =20
+                            <a href=3D"https://play.google.com/store/apps/d=
+etails?id=3Dcom.mercadolibre&hl=3Des" >
+                                <img src=3D"http://static.mlstatic.com/org-=
+img/emails/googlePlay-2x_es_c.png" border=3D"0" width=3D"138" height=3D"43"=
+ title=3D"Descargar aplicaci=F3n para Android" alt=3D"Descargar aplicaci=F3=
+n para Android">
+                            </a>
+                       =20
+
+                    </td>
+                </tr>
+                <tr>
+                    <td height=3D"15" style=3D"font-size:1px">&nbsp;</td>
+                    <td height=3D"15" style=3D"font-size:1px">&nbsp;</td>
+                    <td height=3D"15" style=3D"font-size:1px">&nbsp;</td>
+                    <td height=3D"15" style=3D"font-size:1px">&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+------=_Part_30153657_475764857.1526490297214--
+
+------=_Part_30153656_644771717.1526490297214--
